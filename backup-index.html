@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Andra & Selina - Auto Scroll Gallery</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Great+Vibes&family=Montserrat:wght@200;300&display=swap" rel="stylesheet">
+<style>
+body{font-family:Montserrat;background:#060606;color:#E8DCC6}
+.serif{font-family:'Cormorant Garamond'}.script{font-family:'Great Vibes'}
+.gold{color:#D4AF37}.border-gold{border-color:rgba(212,175,55,0.25)}
+
+/* ANIMASI JALAN ATAS BAWAH */
+@keyframes scrollUpDown{
+0%{transform:translateY(0)}
+50%{transform:translateY(-50%)}
+100%{transform:translateY(0)}
+}
+.scroll-container{
+height:500px;overflow:hidden;position:relative;
+border:1px solid rgba(212,175,55,0.2);
+}
+.scroll-track{
+animation:scrollUpDown 18s ease-in-out infinite;
+}
+.scroll-track:hover{animation-play-state:paused}
+</style>
+</head>
+<body>
+
+<div id="cover" class="fixed inset-0 z-[99] bg-[#050505] flex items-center justify-center p-6 transition-all duration-1000">
+<div class="w-full max-w-[400px] border border-gold p-2"><div class="border border-gold/50 p-10 py-20 text-center bg-[#0a0a0a]">
+<p class="text-[9px] tracking-[0.8em] text-[#D4AF37]">ROYAL PRO AUTO</p>
+<h1 class="script text-[64px] text-[#D4AF37] mt-6 leading-none">Andra<br>& Selina</h1>
+<button onclick="buka()" class="mt-12 w-full border border-gold text-[#D4AF37] py-4 text-[10px] tracking-[0.5em]">BUKA UNDANGAN →</button>
+</div></div></div>
+
+<audio id="musik" loop><source src="janji-suci.mp3"></audio>
+
+<div class="max-w-[480px] mx-auto">
+
+<div class="min-h-screen flex flex-col items-center justify-center text-center px-8">
+<h2 class="script text-[76px] text-[#D4AF37] leading-[0.9]">Andra<br>& Selina</h2>
+<p class="text-[10px] tracking-[0.4em] mt-8 opacity-50">24 DEC 2026 • SURYA KENCANA BOGOR</p>
+<div class="grid grid-cols-4 gap-2 mt-16 w-full">
+<div class="border border-gold/20 py-5"><p id="d" class="serif text-2xl text-[#D4AF37]">00</p></div>
+<div class="border border-gold/20 py-5"><p id="h" class="serif text-2xl text-[#D4AF37]">00</p></div>
+<div class="border border-gold/20 py-5"><p id="m" class="serif text-2xl text-[#D4AF37]">00</p></div>
+<div class="border border-gold/20 py-5"><p id="s" class="serif text-2xl text-[#D4AF37]">00</p></div>
+</div>
+</div>
+
+<!-- GALLERY JALAN OTOMATIS ATAS BAWAH -->
+<div class="px-6 py-20 border-y border-gold/10">
+<div class="text-center mb-8">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37]">AUTO SCROLL GALLERY</p>
+<h3 class="serif text-3xl italic text-[#D4AF37] mt-2">Momen Bahagia</h3>
+<p class="text-[8px] opacity-30 mt-2 tracking-widest">FOTO JALAN OTOMATIS • HOVER UNTUK PAUSE</p>
+</div>
+
+<div class="scroll-container">
+<div class="scroll-track">
+<img src="foto1.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
+<img src="foto2.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
+<img src="foto3.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
+<img src="foto4.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
+<!-- DUPLIKAT BIAR LOOP MULUS -->
+<img src="foto1.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
+<img src="foto2.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
+<img src="foto3.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
+<img src="foto4.jpg" class="w-full aspect-[4/5] object-cover">
+</div>
+</div>
+</div>
+
+<div class="px-8 py-20 text-center">
+<a href="https://maps.app.goo.gl/FpxE5YrZ9kJVJFbY9" target="_blank" class="block border border-gold/40 py-4 text-[10px] tracking-[0.4em] text-[#D4AF37]">BUKA MAPS →</a>
+</div>
+
+</div>
+
+<script>
+function buka(){document.getElementById('cover').style.transform='translateY(-100%)';document.getElementById('musik').play().catch(()=>{});setTimeout(()=>document.getElementById('cover').style.display='none',1000)}
+const target=new Date("Dec 24, 2026 16:00:00").getTime();setInterval(()=>{let j=target-new Date().getTime();if(j<0)j=0;document.getElementById('d').innerText=Math.floor(j/86400000);document.getElementById('h').innerText=Math.floor(j%86400000/3600000);document.getElementById('m').innerText=Math.floor(j%3600000/60000);document.getElementById('s').innerText=Math.floor(j%60000/1000)},1000)
+</script>
+</body>
+</html>
