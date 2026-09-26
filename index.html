@@ -1,75 +1,150 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Andra & Selina - Auto Scroll Gallery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Andra & Selina</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Great+Vibes&family=Montserrat:wght@200;300&display=swap" rel="stylesheet">
 <style>
-body{font-family:Montserrat;background:#060606;color:#E8DCC6}
-.serif{font-family:'Cormorant Garamond'}.script{font-family:'Great Vibes'}
-.gold{color:#D4AF37}.border-gold{border-color:rgba(212,175,55,0.25)}
-
-/* ANIMASI JALAN ATAS BAWAH */
-@keyframes scrollUpDown{
-0%{transform:translateY(0)}
-50%{transform:translateY(-50%)}
-100%{transform:translateY(0)}
-}
-.scroll-container{
-height:500px;overflow:hidden;position:relative;
-border:1px solid rgba(212,175,55,0.2);
-}
-.scroll-track{
-animation:scrollUpDown 18s ease-in-out infinite;
-}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Montserrat',sans-serif;background:#060606;color:#E8DCC6;margin:0}
+.serif{font-family:'Cormorant Garamond',serif}
+.script{font-family:'Great Vibes',cursive}
+.gold{color:#D4AF37}
+.border-gold{border-color:rgba(212,175,55,0.25)}
+@keyframes scrollUpDown{0%{transform:translateY(0)}50%{transform:translateY(-50%)}100%{transform:translateY(0)}}
+.scroll-container{height:500px;overflow:hidden;position:relative;border:1px solid rgba(212,175,55,0.2)}
+.scroll-track{animation:scrollUpDown 18s ease-in-out infinite}
 .scroll-track:hover{animation-play-state:paused}
+.ph{width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;margin-bottom:2px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:rgba(212,175,55,0.6);border:1px solid rgba(212,175,55,0.15)}
+.swipe-container{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:8px}
+.swipe-container::-webkit-scrollbar{display:none}
+.swipe-slide{flex:0 0 85%;scroll-snap-align:center}
+.swipe-slide .ph{aspect-ratio:4/5;margin-bottom:0}
+.tab-btn{border:1px solid rgba(212,175,55,0.3);color:rgba(232,220,198,0.5);font-size:9px;letter-spacing:0.2em;padding:8px 14px;background:transparent}
+.tab-btn.active{color:#D4AF37;border-color:#D4AF37}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:12px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(212,175,55,0.25)}
+.dot.active{background:#D4AF37}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.show{opacity:1;transform:translateY(0)}
+.eq{display:none;gap:2px;align-items:flex-end;height:10px}
+.eq.on{display:flex}
+.eq span{width:2px;background:#D4AF37;animation:eq 0.8s infinite ease-in-out}
+.eq span:nth-child(2){animation-delay:.2s}.eq span:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:3px}50%{height:10px}}
+#langBtn{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40}
+.event-card{border:1px solid rgba(212,175,55,0.2);padding:20px;margin-bottom:12px}
+input,textarea{background:#0d0d0d;border:1px solid rgba(212,175,55,0.3);color:#E8DCC6;font-family:'Montserrat',sans-serif;font-size:12px;padding:12px;width:100%}
+input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
+#loader{position:fixed;inset:0;z-index:100;background:#060606;display:flex;align-items:center;justify-content:center;transition:opacity .6s}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-<div id="cover" class="fixed inset-0 z-[99] bg-[#050505] flex items-center justify-center p-6 transition-all duration-1000">
+<div id="loader"><p class="script text-5xl text-[#D4AF37]">A & S</p></div>
+
+<div id="cover" class="fixed inset-0 z-[99] bg-[#050505] flex items-center justify-center p-6" style="transition:transform 1s">
 <div class="w-full max-w-[400px] border border-gold p-2"><div class="border border-gold/50 p-10 py-20 text-center bg-[#0a0a0a]">
-<p class="text-[9px] tracking-[0.8em] text-[#D4AF37]">ROYAL PRO AUTO</p>
+<p class="text-[9px] tracking-[0.8em] text-[#D4AF37]">THE WEDDING OF</p>
 <h1 class="script text-[64px] text-[#D4AF37] mt-6 leading-none">Andra<br>& Selina</h1>
-<button onclick="buka()" class="mt-12 w-full border border-gold text-[#D4AF37] py-4 text-[10px] tracking-[0.5em]">BUKA UNDANGAN →</button>
+<p class="text-[10px] tracking-[0.2em] mt-6 opacity-60">Kepada Yth.</p>
+<p id="namaTamu" class="serif text-xl italic text-[#D4AF37] mt-1">Bapak/Ibu/Saudara/i</p>
+<button onclick="buka()" class="mt-10 w-full border border-gold text-[#D4AF37] py-4 text-[10px] tracking-[0.5em] bg-transparent">BUKA UNDANGAN →</button>
 </div></div></div>
 
-<audio id="musik" loop><source src="janji-suci.mp3"></audio>
+<button id="langBtn" onclick="toggleLang()" class="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-[#D4AF37] bg-[#0a0a0a] text-[10px]">ID</button>
+<audio id="musik" loop></audio>
+<button id="btnMusik" onclick="toggleMusik()" class="fixed bottom-5 right-5 z-40 w-11 h-11 rounded-full border border-gold flex items-center justify-center text-[#D4AF37] bg-[#0a0a0a]">
+<span id="eqIcon" class="eq"><span></span><span></span><span></span></span>
+<span id="musNote">♪</span>
+</button>
 
 <div class="max-w-[480px] mx-auto">
 
-<div class="min-h-screen flex flex-col items-center justify-center text-center px-8">
+<div style="min-height:100vh" class="flex flex-col items-center justify-center text-center px-8">
 <h2 class="script text-[76px] text-[#D4AF37] leading-[0.9]">Andra<br>& Selina</h2>
 <p class="text-[10px] tracking-[0.4em] mt-8 opacity-50">24 DEC 2026 • SURYA KENCANA BOGOR</p>
 <div class="grid grid-cols-4 gap-2 mt-16 w-full">
-<div class="border border-gold/20 py-5"><p id="d" class="serif text-2xl text-[#D4AF37]">00</p></div>
-<div class="border border-gold/20 py-5"><p id="h" class="serif text-2xl text-[#D4AF37]">00</p></div>
-<div class="border border-gold/20 py-5"><p id="m" class="serif text-2xl text-[#D4AF37]">00</p></div>
-<div class="border border-gold/20 py-5"><p id="s" class="serif text-2xl text-[#D4AF37]">00</p></div>
+<div class="border border-gold/20 py-5"><p id="d" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">HARI</p></div>
+<div class="border border-gold/20 py-5"><p id="h" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">JAM</p></div>
+<div class="border border-gold/20 py-5"><p id="m" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">MENIT</p></div>
+<div class="border border-gold/20 py-5"><p id="s" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">DETIK</p></div>
+</div>
+<a id="btnCal" href="#" class="mt-10 block w-full border border-gold/40 py-3 text-[9px] tracking-[0.4em] text-[#D4AF37]" data-i18n="saveDate">+ SIMPAN TANGGAL</a>
+</div>
+
+<div class="reveal px-8 py-16 border-t border-gold/10">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-8 text-center" data-i18n="eventTitle">RANGKAIAN ACARA</p>
+<div class="event-card">
+<p class="serif text-xl italic text-[#D4AF37]">Akad Nikah</p>
+<p class="text-[11px] opacity-60 mt-2">Sabtu, 24 Desember 2026</p>
+<p class="text-[11px] opacity-60">08.00 - 10.00 WIB</p>
+<p class="text-[11px] opacity-60 mt-1">Kediaman Mempelai Wanita, Bogor</p>
+</div>
+<div class="event-card">
+<p class="serif text-xl italic text-[#D4AF37]">Resepsi</p>
+<p class="text-[11px] opacity-60 mt-2">Sabtu, 24 Desember 2026</p>
+<p class="text-[11px] opacity-60">12.00 - 16.00 WIB</p>
+<p class="text-[11px] opacity-60 mt-1">Gedung Surya Kencana, Bogor</p>
+</div>
+<div class="mt-8">
+<p class="text-[9px] tracking-[0.4em] text-[#D4AF37] mb-3 text-center">SUSUNAN ACARA</p>
+<div class="text-[11px] opacity-60 space-y-1 text-center">
+<p>12.00 - Kedatangan Tamu</p>
+<p>12.30 - Prosesi Pengantin</p>
+<p>13.30 - Makan Siang</p>
+<p>15.00 - Hiburan & Foto Bersama</p>
+</div>
+</div>
+<div class="mt-8 text-center">
+<p class="text-[9px] tracking-[0.4em] text-[#D4AF37] mb-2">DRESSCODE</p>
+<p class="text-[11px] opacity-60">Formal, nuansa Gold / Navy. Mohon tidak mengenakan warna putih.</p>
 </div>
 </div>
 
-<!-- GALLERY JALAN OTOMATIS ATAS BAWAH -->
+<div class="px-8 py-16 text-center border-t border-gold/10">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-6">KEDUA MEMPELAI</p>
+<div class="mb-8">
+<p class="serif text-2xl italic text-[#D4AF37]">Andra Pratama</p>
+<p class="text-[10px] opacity-50 mt-1">Putra dari Bpk. Hendra Wijaya & Ibu Siti Aminah</p>
+</div>
+<div>
+<p class="serif text-2xl italic text-[#D4AF37]">Selina Putri</p>
+<p class="text-[10px] opacity-50 mt-1">Putri dari Bpk. Budi Santoso & Ibu Ratna Dewi</p>
+</div>
+</div>
+
+<div class="reveal px-8 py-16 border-t border-gold/10">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-8 text-center" data-i18n="loveTitle">KISAH KAMI</p>
+<div class="space-y-8">
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2019</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Pertama Bertemu</p><p class="text-[11px] opacity-60 mt-1">Dipertemukan lewat teman kuliah di sebuah acara kampus.</p></div>
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2021</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Mulai Menjalin Hubungan</p><p class="text-[11px] opacity-60 mt-1">Setelah dekat selama dua tahun, kami memutuskan untuk berkomitmen.</p></div>
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2025</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Lamaran</p><p class="text-[11px] opacity-60 mt-1">Andra melamar Selina disaksikan kedua keluarga besar.</p></div>
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2026</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Menikah</p><p class="text-[11px] opacity-60 mt-1">Kami memutuskan melangkah ke jenjang selanjutnya.</p></div>
+</div>
+</div>
+
 <div class="px-6 py-20 border-y border-gold/10">
-<div class="text-center mb-8">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37]">AUTO SCROLL GALLERY</p>
+<div class="text-center mb-6">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37]">GALLERY</p>
 <h3 class="serif text-3xl italic text-[#D4AF37] mt-2">Momen Bahagia</h3>
-<p class="text-[8px] opacity-30 mt-2 tracking-widest">FOTO JALAN OTOMATIS • HOVER UNTUK PAUSE</p>
 </div>
-
-<div class="scroll-container">
-<div class="scroll-track">
-<img src="foto1.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
-<img src="foto2.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
-<img src="foto3.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
-<img src="foto4.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
-<!-- DUPLIKAT BIAR LOOP MULUS -->
-<img src="foto1.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
-<img src="foto2.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
-<img src="foto3.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]">
-<img src="foto4.jpg" class="w-full aspect-[4/5] object-cover">
+<div class="flex justify-center gap-2 mb-6">
+<button class="tab-btn active" id="tabAuto" onclick="showGallery('auto')">AUTO SCROLL</button>
+<button class="tab-btn" id="tabSwipe" onclick="showGallery('swipe')">SWIPE MANUAL</button>
 </div>
+<div id="galAuto">
+<p class="text-[8px] opacity-30 mb-2 text-center tracking-widest">HOVER UNTUK PAUSE</p>
+<div class="scroll-container"><div class="scroll-track" id="track"></div></div>
+</div>
+<div id="galSwipe" class="hidden">
+<p class="text-[8px] opacity-30 mb-2 text-center tracking-widest">GESER UNTUK LIHAT FOTO LAIN</p>
+<div class="swipe-container" id="swipeTrack"></div>
+<div class="dots" id="dots"></div>
 </div>
 </div>
 
@@ -77,11 +152,203 @@ animation:scrollUpDown 18s ease-in-out infinite;
 <a href="https://maps.app.goo.gl/FpxE5YrZ9kJVJFbY9" target="_blank" class="block border border-gold/40 py-4 text-[10px] tracking-[0.4em] text-[#D4AF37]">BUKA MAPS →</a>
 </div>
 
+<div class="px-8 py-16 border-t border-gold/10">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2 text-center">AMPLOP DIGITAL</p>
+<h3 class="serif text-2xl italic text-[#D4AF37] text-center mb-8">Wedding Gift</h3>
+<div class="border border-gold/20 p-5 mb-4 flex justify-between items-center">
+<div><p class="text-[10px] opacity-50">BCA</p><p class="serif text-lg text-[#D4AF37]">1234567890</p><p class="text-[9px] opacity-50">a.n. Andra Pratama</p></div>
+<button onclick="copyText('1234567890',this)" class="border border-gold/40 text-[#D4AF37] text-[9px] px-3 py-2 tracking-widest">SALIN</button>
+</div>
+<div class="border border-gold/20 p-5 flex justify-between items-center">
+<div><p class="text-[10px] opacity-50">GoPay</p><p class="serif text-lg text-[#D4AF37]">0858-9309-3628</p><p class="text-[9px] opacity-50">a.n. Selina Putri</p></div>
+<button onclick="copyText('085893093628',this)" class="border border-gold/40 text-[#D4AF37] text-[9px] px-3 py-2 tracking-widest">SALIN</button>
+</div>
+</div>
+
+<div class="reveal px-8 py-16 border-t border-gold/10">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2 text-center" data-i18n="rsvpTitle">RSVP</p>
+<h3 class="serif text-2xl italic text-[#D4AF37] text-center mb-3" data-i18n="rsvpSub">Konfirmasi Kehadiran</h3>
+<p class="text-[10px] opacity-50 text-center mb-8"><span id="countRSVP">0</span> orang sudah konfirmasi kehadiran</p>
+<div class="space-y-3">
+<input id="rsvpNama" placeholder="Nama Anda">
+<input id="rsvpJumlah" type="number" min="1" placeholder="Jumlah Tamu">
+<select id="rsvpStatus" class="w-full bg-[#0d0d0d] border border-gold/30 text-[#E8DCC6] text-[11px] p-3">
+<option value="Hadir">Insya Allah Hadir</option>
+<option value="Tidak Hadir">Tidak Bisa Hadir</option>
+</select>
+<button onclick="kirimRSVP()" class="w-full border border-gold text-[#D4AF37] py-3 text-[10px] tracking-[0.4em]">KIRIM RSVP</button>
+</div>
+<a id="btnWA" href="#" target="_blank" class="mt-4 block w-full border border-gold/40 py-3 text-[9px] tracking-[0.4em] text-[#D4AF37] text-center">ATAU RSVP VIA WHATSAPP →</a>
+</div>
+
+<div class="px-8 py-16 border-t border-gold/10">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2 text-center">UCAPAN & DOA</p>
+<h3 class="serif text-2xl italic text-[#D4AF37] text-center mb-8">Kirim Ucapan</h3>
+<div class="space-y-3 mb-8">
+<input id="ucapNama" placeholder="Nama Anda">
+<textarea id="ucapPesan" rows="3" placeholder="Tulis ucapan & doa..."></textarea>
+<button onclick="kirimUcapan()" class="w-full border border-gold text-[#D4AF37] py-3 text-[10px] tracking-[0.4em]">KIRIM UCAPAN</button>
+</div>
+<div id="listUcapan" class="space-y-4"></div>
+</div>
+
+<div class="reveal px-8 py-16 text-center border-t border-gold/10">
+<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2">CHECK-IN HARI-H</p>
+<h3 class="serif text-2xl italic text-[#D4AF37] mb-6">QR Code Kehadiran</h3>
+<div id="qrBox" class="flex justify-center bg-white p-3 inline-block"></div>
+<p class="text-[10px] opacity-50 mt-4">Tunjukkan QR ini ke panitia saat tiba di lokasi acara</p>
+</div>
+
+<div class="reveal px-8 py-16 text-center border-t border-gold/10">
+<button onclick="bagikan()" class="block w-full border border-gold/40 py-4 text-[10px] tracking-[0.4em] text-[#D4AF37]" data-i18n="shareBtn">BAGIKAN UNDANGAN INI →</button>
+</div>
+
+<div class="px-8 py-10 text-center border-t border-gold/10">
+<p class="script text-3xl text-[#D4AF37]">Andra & Selina</p>
+<p class="text-[8px] opacity-30 mt-4 tracking-[0.3em]">DESIGNED BY SUPRIATNA STUDIO</p>
+</div>
+
 </div>
 
 <script>
-function buka(){document.getElementById('cover').style.transform='translateY(-100%)';document.getElementById('musik').play().catch(()=>{});setTimeout(()=>document.getElementById('cover').style.display='none',1000)}
-const target=new Date("Dec 24, 2026 16:00:00").getTime();setInterval(()=>{let j=target-new Date().getTime();if(j<0)j=0;document.getElementById('d').innerText=Math.floor(j/86400000);document.getElementById('h').innerText=Math.floor(j%86400000/3600000);document.getElementById('m').innerText=Math.floor(j%3600000/60000);document.getElementById('s').innerText=Math.floor(j%60000/1000)},1000)
+window.addEventListener('load',function(){document.getElementById('loader').style.opacity=0;setTimeout(function(){document.getElementById('loader').style.display='none'},600)});
+
+var params=new URLSearchParams(window.location.search);
+var tamu=params.get('to');
+if(tamu)document.getElementById('namaTamu').innerText=decodeURIComponent(tamu);
+
+function buka(){
+  var c=document.getElementById('cover');
+  c.style.transform='translateY(-100%)';
+  var a=document.getElementById('musik');
+  if(a.src)a.play().catch(function(){});
+  setTimeout(function(){c.style.display='none'},1000);
+}
+
+function toggleMusik(){
+  var a=document.getElementById('musik'),eq=document.getElementById('eqIcon'),note=document.getElementById('musNote');
+  if(a.paused){a.play().catch(function(){});eq.classList.add('on');note.style.display='none';}
+  else{a.pause();eq.classList.remove('on');note.style.display='inline';}
+}
+
+var target=new Date("Dec 24, 2026 16:00:00").getTime();
+setInterval(function(){
+  var j=target-new Date().getTime();if(j<0)j=0;
+  document.getElementById('d').innerText=String(Math.floor(j/86400000)).padStart(2,'0');
+  document.getElementById('h').innerText=String(Math.floor(j%86400000/3600000)).padStart(2,'0');
+  document.getElementById('m').innerText=String(Math.floor(j%3600000/60000)).padStart(2,'0');
+  document.getElementById('s').innerText=String(Math.floor(j%60000/1000)).padStart(2,'0');
+},1000);
+
+document.getElementById('btnCal').href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Andra+%26+Selina&dates=20261224T090000/20261224T130000&location=Surya+Kencana%2C+Bogor&details=Resepsi+Pernikahan+Andra+%26+Selina";
+document.getElementById('btnWA').href="https://wa.me/6285893093628?text=Halo%2C%20saya%20konfirmasi%20kehadiran%20di%20pernikahan%20Andra%20%26%20Selina";
+
+var colors=['#151515','#1a1a1a'];
+var track=document.getElementById('track'),html='';
+for(var r=0;r<2;r++){for(var i=1;i<=6;i++){html+='<div class="ph" style="background:'+colors[i%2]+'">Foto '+i+'</div>';}}
+track.innerHTML=html;
+
+var swipeTrack=document.getElementById('swipeTrack'),dotsEl=document.getElementById('dots'),sHtml='',dHtml='';
+for(var k=1;k<=6;k++){
+  sHtml+='<div class="swipe-slide"><div class="ph" style="background:'+colors[k%2]+'">Foto '+k+'</div></div>';
+  dHtml+='<div class="dot'+(k===1?' active':'')+'" data-i="'+(k-1)+'"></div>';
+}
+swipeTrack.innerHTML=sHtml;dotsEl.innerHTML=dHtml;
+
+swipeTrack.addEventListener('scroll',function(){
+  var idx=Math.round(swipeTrack.scrollLeft/swipeTrack.children[0].offsetWidth);
+  document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('active',i===idx);});
+});
+
+function showGallery(mode){
+  document.getElementById('galAuto').classList.toggle('hidden',mode!=='auto');
+  document.getElementById('galSwipe').classList.toggle('hidden',mode!=='swipe');
+  document.getElementById('tabAuto').classList.toggle('active',mode==='auto');
+  document.getElementById('tabSwipe').classList.toggle('active',mode==='swipe');
+}
+
+function copyText(t,btn){
+  navigator.clipboard.writeText(t).then(function(){
+    var o=btn.innerText;btn.innerText='TERSALIN';setTimeout(function(){btn.innerText=o},1500);
+  });
+}
+
+function kirimRSVP(){
+  var n=document.getElementById('rsvpNama').value.trim();
+  var j=document.getElementById('rsvpJumlah').value;
+  var s=document.getElementById('rsvpStatus').value;
+  if(!n){alert('Isi nama dulu ya');return;}
+  try{
+    var d=JSON.parse(localStorage.getItem('rsvp_list')||'[]');
+    d.push({nama:n,jumlah:j||1,status:s,waktu:Date.now()});
+    localStorage.setItem('rsvp_list',JSON.stringify(d));
+  }catch(e){}
+  alert('Terima kasih, '+n+'! Konfirmasi kehadiran kamu sudah tercatat.');
+  document.getElementById('rsvpNama').value='';document.getElementById('rsvpJumlah').value='';
+  updateCounter();
+}
+
+function updateCounter(){
+  var d=[];try{d=JSON.parse(localStorage.getItem('rsvp_list')||'[]');}catch(e){}
+  var total=d.filter(function(x){return x.status==='Hadir';}).reduce(function(a,b){return a+parseInt(b.jumlah||1);},0);
+  document.getElementById('countRSVP').innerText=total;
+}
+updateCounter();
+
+document.querySelectorAll('.reveal').forEach(function(el){
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show');});
+  },{threshold:0.15}).observe(el);
+});
+
+if(window.QRCode){new QRCode(document.getElementById('qrBox'),{text:window.location.href,width:130,height:130});}
+
+var lang='id';
+var i18n={
+  saveDate:{id:'+ SIMPAN TANGGAL',en:'+ SAVE THE DATE'},
+  eventTitle:{id:'RANGKAIAN ACARA',en:'EVENT DETAILS'},
+  loveTitle:{id:'KISAH KAMI',en:'OUR STORY'},
+  rsvpTitle:{id:'RSVP',en:'RSVP'},
+  rsvpSub:{id:'Konfirmasi Kehadiran',en:'Confirm Your Attendance'},
+  shareBtn:{id:'BAGIKAN UNDANGAN INI →',en:'SHARE THIS INVITATION →'}
+};
+function toggleLang(){
+  lang=lang==='id'?'en':'id';
+  document.getElementById('langBtn').innerText=lang.toUpperCase();
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.getAttribute('data-i18n');
+    if(i18n[key])el.innerText=i18n[key][lang];
+  });
+}
+
+function kirimUcapan(){
+  var n=document.getElementById('ucapNama').value.trim();
+  var p=document.getElementById('ucapPesan').value.trim();
+  if(!n||!p){alert('Isi nama & ucapan dulu ya');return;}
+  try{
+    var d=JSON.parse(localStorage.getItem('ucapan_list')||'[]');
+    d.unshift({nama:n,pesan:p,waktu:Date.now()});
+    localStorage.setItem('ucapan_list',JSON.stringify(d));
+  }catch(e){}
+  document.getElementById('ucapNama').value='';document.getElementById('ucapPesan').value='';
+  renderUcapan();
+}
+
+function renderUcapan(){
+  var el=document.getElementById('listUcapan');
+  var d=[];try{d=JSON.parse(localStorage.getItem('ucapan_list')||'[]');}catch(e){}
+  if(d.length===0){el.innerHTML='<p class="text-[10px] opacity-30 text-center">Belum ada ucapan. Jadilah yang pertama!</p>';return;}
+  el.innerHTML=d.map(function(u){
+    return '<div class="border-l border-gold/30 pl-4"><p class="serif text-base italic text-[#D4AF37]">'+u.nama+'</p><p class="text-[11px] opacity-60 mt-1">'+u.pesan+'</p></div>';
+  }).join('');
+}
+renderUcapan();
+
+function bagikan(){
+  var url=window.location.href;
+  if(navigator.share){navigator.share({title:'Undangan Andra & Selina',url:url}).catch(function(){});}
+  else{navigator.clipboard.writeText(url);alert('Link undangan disalin ke clipboard!');}
+}
 </script>
 </body>
 </html>
