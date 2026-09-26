@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Andra & Selina</title>
+<meta property="og:title" content="Undangan Pernikahan Andra & Selina">
+<meta property="og:description" content="Sabtu, 24 Desember 2026 • Surya Kencana, Bogor. Dengan penuh syukur, kami mengundang Anda di hari bahagia kami.">
+<meta property="og:image" content="foto1.jpg">
+<meta property="og:type" content="website">
+<meta name="description" content="Undangan pernikahan digital Andra & Selina, 24 Desember 2026 di Surya Kencana, Bogor.">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Great+Vibes&family=Montserrat:wght@200;300&display=swap" rel="stylesheet">
 <style>
@@ -13,7 +18,8 @@ body{font-family:'Montserrat',sans-serif;background:#060606;color:#E8DCC6;margin
 .serif{font-family:'Cormorant Garamond',serif}
 .script{font-family:'Great Vibes',cursive}
 .gold{color:#D4AF37}
-.border-gold{border-color:rgba(212,175,55,0.25)}
+.gold-text{color:var(--accent)}
+.border-gold{border-color:var(--accent)}
 @keyframes scrollUpDown{0%{transform:translateY(0)}50%{transform:translateY(-50%)}100%{transform:translateY(0)}}
 .scroll-container{height:500px;overflow:hidden;position:relative;border:1px solid rgba(212,175,55,0.2)}
 .scroll-track{animation:scrollUpDown 18s ease-in-out infinite}
@@ -37,6 +43,11 @@ body{font-family:'Montserrat',sans-serif;background:#060606;color:#E8DCC6;margin
 @keyframes eq{0%,100%{height:3px}50%{height:10px}}
 #langBtn{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:14px;z-index:40}
 .event-card{border:1px solid rgba(212,175,55,0.2);padding:20px;margin-bottom:12px}
+:root{--accent:#D4AF37}
+.theme-dot{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.theme-dot.on{border-color:#fff}
+#listUcapan{max-height:340px;overflow-y:auto}
+.wm-link{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(212,175,55,0.4)}
 input,textarea{background:#0d0d0d;border:1px solid rgba(212,175,55,0.3);color:#E8DCC6;font-family:'Montserrat',sans-serif;font-size:12px;padding:12px;width:100%}
 input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
 #loader{position:fixed;inset:0;z-index:100;background:#060606;display:flex;align-items:center;justify-content:center;transition:opacity .6s}
@@ -45,20 +56,20 @@ input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
 </head>
 <body>
 
-<div id="loader"><p class="script text-5xl text-[#D4AF37]">A & S</p></div>
+<div id="loader"><p class="script text-5xl gold-text">A & S</p></div>
 
 <div id="cover" class="fixed inset-0 z-[99] bg-[#050505] flex items-center justify-center p-6" style="transition:transform 1s">
 <div class="w-full max-w-[400px] border border-gold p-2"><div class="border border-gold/50 p-10 py-20 text-center bg-[#0a0a0a]">
-<p class="text-[9px] tracking-[0.8em] text-[#D4AF37]">THE WEDDING OF</p>
-<h1 class="script text-[64px] text-[#D4AF37] mt-6 leading-none">Andra<br>& Selina</h1>
+<p class="text-[9px] tracking-[0.8em] gold-text">THE WEDDING OF</p>
+<h1 class="script text-[64px] gold-text mt-6 leading-none">Andra<br>& Selina</h1>
 <p class="text-[10px] tracking-[0.2em] mt-6 opacity-60">Kepada Yth.</p>
-<p id="namaTamu" class="serif text-xl italic text-[#D4AF37] mt-1">Bapak/Ibu/Saudara/i</p>
-<button onclick="buka()" class="mt-10 w-full border border-gold text-[#D4AF37] py-4 text-[10px] tracking-[0.5em] bg-transparent">BUKA UNDANGAN →</button>
+<p id="namaTamu" class="serif text-xl italic gold-text mt-1">Bapak/Ibu/Saudara/i</p>
+<button onclick="buka()" class="mt-10 w-full border border-gold gold-text py-4 text-[10px] tracking-[0.5em] bg-transparent">BUKA UNDANGAN →</button>
 </div></div></div>
 
-<button id="langBtn" onclick="toggleLang()" class="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-[#D4AF37] bg-[#0a0a0a] text-[10px]">ID</button>
+<button id="langBtn" onclick="toggleLang()" class="w-10 h-10 rounded-full border border-gold flex items-center justify-center gold-text bg-[#0a0a0a] text-[10px]">ID</button>
 <audio id="musik" loop><source src="janji-suci.mp3"></audio>
-<button id="btnMusik" onclick="toggleMusik()" class="fixed bottom-5 right-5 z-40 w-11 h-11 rounded-full border border-gold flex items-center justify-center text-[#D4AF37] bg-[#0a0a0a]">
+<button id="btnMusik" onclick="toggleMusik()" class="fixed bottom-5 right-5 z-40 w-11 h-11 rounded-full border border-gold flex items-center justify-center gold-text bg-[#0a0a0a]">
 <span id="eqIcon" class="eq"><span></span><span></span><span></span></span>
 <span id="musNote">♪</span>
 </button>
@@ -66,33 +77,33 @@ input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
 <div class="max-w-[480px] mx-auto">
 
 <div style="min-height:100vh" class="flex flex-col items-center justify-center text-center px-8">
-<h2 class="script text-[76px] text-[#D4AF37] leading-[0.9]">Andra<br>& Selina</h2>
+<h2 class="script text-[76px] gold-text leading-[0.9]">Andra<br>& Selina</h2>
 <p class="text-[10px] tracking-[0.4em] mt-8 opacity-50">24 DEC 2026 • SURYA KENCANA BOGOR</p>
 <div class="grid grid-cols-4 gap-2 mt-16 w-full">
-<div class="border border-gold/20 py-5"><p id="d" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">HARI</p></div>
-<div class="border border-gold/20 py-5"><p id="h" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">JAM</p></div>
-<div class="border border-gold/20 py-5"><p id="m" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">MENIT</p></div>
-<div class="border border-gold/20 py-5"><p id="s" class="serif text-2xl text-[#D4AF37]">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">DETIK</p></div>
+<div class="border border-gold/20 py-5"><p id="d" class="serif text-2xl gold-text">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">HARI</p></div>
+<div class="border border-gold/20 py-5"><p id="h" class="serif text-2xl gold-text">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">JAM</p></div>
+<div class="border border-gold/20 py-5"><p id="m" class="serif text-2xl gold-text">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">MENIT</p></div>
+<div class="border border-gold/20 py-5"><p id="s" class="serif text-2xl gold-text">00</p><p class="text-[8px] opacity-40 mt-1 tracking-widest">DETIK</p></div>
 </div>
-<a id="btnCal" href="#" class="mt-10 block w-full border border-gold/40 py-3 text-[9px] tracking-[0.4em] text-[#D4AF37]" data-i18n="saveDate">+ SIMPAN TANGGAL</a>
+<a id="btnCal" href="#" class="mt-10 block w-full border border-gold/40 py-3 text-[9px] tracking-[0.4em] gold-text" data-i18n="saveDate">+ SIMPAN TANGGAL</a>
 </div>
 
 <div class="reveal px-8 py-16 border-t border-gold/10">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-8 text-center" data-i18n="eventTitle">RANGKAIAN ACARA</p>
+<p class="text-[9px] tracking-[0.6em] gold-text mb-8 text-center" data-i18n="eventTitle">RANGKAIAN ACARA</p>
 <div class="event-card">
-<p class="serif text-xl italic text-[#D4AF37]">Akad Nikah</p>
+<p class="serif text-xl italic gold-text">Akad Nikah</p>
 <p class="text-[11px] opacity-60 mt-2">Sabtu, 24 Desember 2026</p>
 <p class="text-[11px] opacity-60">08.00 - 10.00 WIB</p>
 <p class="text-[11px] opacity-60 mt-1">Kediaman Mempelai Wanita, Bogor</p>
 </div>
 <div class="event-card">
-<p class="serif text-xl italic text-[#D4AF37]">Resepsi</p>
+<p class="serif text-xl italic gold-text">Resepsi</p>
 <p class="text-[11px] opacity-60 mt-2">Sabtu, 24 Desember 2026</p>
 <p class="text-[11px] opacity-60">12.00 - 16.00 WIB</p>
 <p class="text-[11px] opacity-60 mt-1">Gedung Surya Kencana, Bogor</p>
 </div>
 <div class="mt-8">
-<p class="text-[9px] tracking-[0.4em] text-[#D4AF37] mb-3 text-center">SUSUNAN ACARA</p>
+<p class="text-[9px] tracking-[0.4em] gold-text mb-3 text-center">SUSUNAN ACARA</p>
 <div class="text-[11px] opacity-60 space-y-1 text-center">
 <p>12.00 - Kedatangan Tamu</p>
 <p>12.30 - Prosesi Pengantin</p>
@@ -101,37 +112,37 @@ input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
 </div>
 </div>
 <div class="mt-8 text-center">
-<p class="text-[9px] tracking-[0.4em] text-[#D4AF37] mb-2">DRESSCODE</p>
+<p class="text-[9px] tracking-[0.4em] gold-text mb-2">DRESSCODE</p>
 <p class="text-[11px] opacity-60">Formal, nuansa Gold / Navy. Mohon tidak mengenakan warna putih.</p>
 </div>
 </div>
 
 <div class="px-8 py-16 text-center border-t border-gold/10">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-6">KEDUA MEMPELAI</p>
+<p class="text-[9px] tracking-[0.6em] gold-text mb-6">KEDUA MEMPELAI</p>
 <div class="mb-8">
-<p class="serif text-2xl italic text-[#D4AF37]">Andra Pratama</p>
+<p class="serif text-2xl italic gold-text">Andra Pratama</p>
 <p class="text-[10px] opacity-50 mt-1">Putra dari Bpk. Hendra Wijaya & Ibu Siti Aminah</p>
 </div>
 <div>
-<p class="serif text-2xl italic text-[#D4AF37]">Selina Putri</p>
+<p class="serif text-2xl italic gold-text">Selina Putri</p>
 <p class="text-[10px] opacity-50 mt-1">Putri dari Bpk. Budi Santoso & Ibu Ratna Dewi</p>
 </div>
 </div>
 
 <div class="reveal px-8 py-16 border-t border-gold/10">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-8 text-center" data-i18n="loveTitle">KISAH KAMI</p>
+<p class="text-[9px] tracking-[0.6em] gold-text mb-8 text-center" data-i18n="loveTitle">KISAH KAMI</p>
 <div class="space-y-8">
-<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2019</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Pertama Bertemu</p><p class="text-[11px] opacity-60 mt-1">Dipertemukan lewat teman kuliah di sebuah acara kampus.</p></div>
-<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2021</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Mulai Menjalin Hubungan</p><p class="text-[11px] opacity-60 mt-1">Setelah dekat selama dua tahun, kami memutuskan untuk berkomitmen.</p></div>
-<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2025</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Lamaran</p><p class="text-[11px] opacity-60 mt-1">Andra melamar Selina disaksikan kedua keluarga besar.</p></div>
-<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2026</p><p class="serif text-lg italic text-[#D4AF37] mt-1">Menikah</p><p class="text-[11px] opacity-60 mt-1">Kami memutuskan melangkah ke jenjang selanjutnya.</p></div>
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2019</p><p class="serif text-lg italic gold-text mt-1">Pertama Bertemu</p><p class="text-[11px] opacity-60 mt-1">Dipertemukan lewat teman kuliah di sebuah acara kampus.</p></div>
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2021</p><p class="serif text-lg italic gold-text mt-1">Mulai Menjalin Hubungan</p><p class="text-[11px] opacity-60 mt-1">Setelah dekat selama dua tahun, kami memutuskan untuk berkomitmen.</p></div>
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2025</p><p class="serif text-lg italic gold-text mt-1">Lamaran</p><p class="text-[11px] opacity-60 mt-1">Andra melamar Selina disaksikan kedua keluarga besar.</p></div>
+<div class="border-l border-gold/30 pl-5"><p class="text-[9px] opacity-40 tracking-widest">2026</p><p class="serif text-lg italic gold-text mt-1">Menikah</p><p class="text-[11px] opacity-60 mt-1">Kami memutuskan melangkah ke jenjang selanjutnya.</p></div>
 </div>
 </div>
 
 <div class="px-6 py-20 border-y border-gold/10">
 <div class="text-center mb-6">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37]">GALLERY</p>
-<h3 class="serif text-3xl italic text-[#D4AF37] mt-2">Momen Bahagia</h3>
+<p class="text-[9px] tracking-[0.6em] gold-text">GALLERY</p>
+<h3 class="serif text-3xl italic gold-text mt-2">Momen Bahagia</h3>
 </div>
 <div class="flex justify-center gap-2 mb-6">
 <button class="tab-btn active" id="tabAuto" onclick="showGallery('auto')">AUTO SCROLL</button>
@@ -149,25 +160,25 @@ input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
 </div>
 
 <div class="px-8 py-20 text-center">
-<a href="https://maps.app.goo.gl/FpxE5YrZ9kJVJFbY9" target="_blank" class="block border border-gold/40 py-4 text-[10px] tracking-[0.4em] text-[#D4AF37]">BUKA MAPS →</a>
+<a href="https://maps.app.goo.gl/FpxE5YrZ9kJVJFbY9" target="_blank" class="block border border-gold/40 py-4 text-[10px] tracking-[0.4em] gold-text">BUKA MAPS →</a>
 </div>
 
 <div class="px-8 py-16 border-t border-gold/10">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2 text-center">AMPLOP DIGITAL</p>
-<h3 class="serif text-2xl italic text-[#D4AF37] text-center mb-8">Wedding Gift</h3>
+<p class="text-[9px] tracking-[0.6em] gold-text mb-2 text-center">AMPLOP DIGITAL</p>
+<h3 class="serif text-2xl italic gold-text text-center mb-8">Wedding Gift</h3>
 <div class="border border-gold/20 p-5 mb-4 flex justify-between items-center">
-<div><p class="text-[10px] opacity-50">BCA</p><p class="serif text-lg text-[#D4AF37]">1234567890</p><p class="text-[9px] opacity-50">a.n. Andra Pratama</p></div>
-<button onclick="copyText('1234567890',this)" class="border border-gold/40 text-[#D4AF37] text-[9px] px-3 py-2 tracking-widest">SALIN</button>
+<div><p class="text-[10px] opacity-50">BCA</p><p class="serif text-lg gold-text">1234567890</p><p class="text-[9px] opacity-50">a.n. Andra Pratama</p></div>
+<button onclick="copyText('1234567890',this)" class="border border-gold/40 gold-text text-[9px] px-3 py-2 tracking-widest">SALIN</button>
 </div>
 <div class="border border-gold/20 p-5 flex justify-between items-center">
-<div><p class="text-[10px] opacity-50">GoPay</p><p class="serif text-lg text-[#D4AF37]">0858-9309-3628</p><p class="text-[9px] opacity-50">a.n. Selina Putri</p></div>
-<button onclick="copyText('085893093628',this)" class="border border-gold/40 text-[#D4AF37] text-[9px] px-3 py-2 tracking-widest">SALIN</button>
+<div><p class="text-[10px] opacity-50">GoPay</p><p class="serif text-lg gold-text">0858-9309-3628</p><p class="text-[9px] opacity-50">a.n. Selina Putri</p></div>
+<button onclick="copyText('085893093628',this)" class="border border-gold/40 gold-text text-[9px] px-3 py-2 tracking-widest">SALIN</button>
 </div>
 </div>
 
 <div class="reveal px-8 py-16 border-t border-gold/10">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2 text-center" data-i18n="rsvpTitle">RSVP</p>
-<h3 class="serif text-2xl italic text-[#D4AF37] text-center mb-3" data-i18n="rsvpSub">Konfirmasi Kehadiran</h3>
+<p class="text-[9px] tracking-[0.6em] gold-text mb-2 text-center" data-i18n="rsvpTitle">RSVP</p>
+<h3 class="serif text-2xl italic gold-text text-center mb-3" data-i18n="rsvpSub">Konfirmasi Kehadiran</h3>
 <p class="text-[10px] opacity-50 text-center mb-8"><span id="countRSVP">0</span> orang sudah konfirmasi kehadiran</p>
 <div class="space-y-3">
 <input id="rsvpNama" placeholder="Nama Anda">
@@ -176,36 +187,41 @@ input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
 <option value="Hadir">Insya Allah Hadir</option>
 <option value="Tidak Hadir">Tidak Bisa Hadir</option>
 </select>
-<button onclick="kirimRSVP()" class="w-full border border-gold text-[#D4AF37] py-3 text-[10px] tracking-[0.4em]">KIRIM RSVP</button>
+<button onclick="kirimRSVP()" class="w-full border border-gold gold-text py-3 text-[10px] tracking-[0.4em]">KIRIM RSVP</button>
 </div>
-<a id="btnWA" href="#" target="_blank" class="mt-4 block w-full border border-gold/40 py-3 text-[9px] tracking-[0.4em] text-[#D4AF37] text-center">ATAU RSVP VIA WHATSAPP →</a>
+<a id="btnWA" href="#" target="_blank" class="mt-4 block w-full border border-gold/40 py-3 text-[9px] tracking-[0.4em] gold-text text-center">ATAU RSVP VIA WHATSAPP →</a>
 </div>
 
 <div class="px-8 py-16 border-t border-gold/10">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2 text-center">UCAPAN & DOA</p>
-<h3 class="serif text-2xl italic text-[#D4AF37] text-center mb-8">Kirim Ucapan</h3>
+<p class="text-[9px] tracking-[0.6em] gold-text mb-2 text-center">UCAPAN & DOA</p>
+<h3 class="serif text-2xl italic gold-text text-center mb-8">Kirim Ucapan</h3>
 <div class="space-y-3 mb-8">
 <input id="ucapNama" placeholder="Nama Anda">
 <textarea id="ucapPesan" rows="3" placeholder="Tulis ucapan & doa..."></textarea>
-<button onclick="kirimUcapan()" class="w-full border border-gold text-[#D4AF37] py-3 text-[10px] tracking-[0.4em]">KIRIM UCAPAN</button>
+<button onclick="kirimUcapan()" class="w-full border border-gold gold-text py-3 text-[10px] tracking-[0.4em]">KIRIM UCAPAN</button>
 </div>
 <div id="listUcapan" class="space-y-4"></div>
 </div>
 
 <div class="reveal px-8 py-16 text-center border-t border-gold/10">
-<p class="text-[9px] tracking-[0.6em] text-[#D4AF37] mb-2">CHECK-IN HARI-H</p>
-<h3 class="serif text-2xl italic text-[#D4AF37] mb-6">QR Code Kehadiran</h3>
+<p class="text-[9px] tracking-[0.6em] gold-text mb-2">CHECK-IN HARI-H</p>
+<h3 class="serif text-2xl italic gold-text mb-6">QR Code Kehadiran</h3>
 <div id="qrBox" class="flex justify-center bg-white p-3 inline-block"></div>
 <p class="text-[10px] opacity-50 mt-4">Tunjukkan QR ini ke panitia saat tiba di lokasi acara</p>
 </div>
 
 <div class="reveal px-8 py-16 text-center border-t border-gold/10">
-<button onclick="bagikan()" class="block w-full border border-gold/40 py-4 text-[10px] tracking-[0.4em] text-[#D4AF37]" data-i18n="shareBtn">BAGIKAN UNDANGAN INI →</button>
+<button onclick="bagikan()" class="block w-full border border-gold/40 py-4 text-[10px] tracking-[0.4em] gold-text" data-i18n="shareBtn">BAGIKAN UNDANGAN INI →</button>
 </div>
 
 <div class="px-8 py-10 text-center border-t border-gold/10">
-<p class="script text-3xl text-[#D4AF37]">Andra & Selina</p>
-<p class="text-[8px] opacity-30 mt-4 tracking-[0.3em]">DESIGNED BY SUPRIATNA STUDIO</p>
+<p class="script text-3xl gold-text">Andra & Selina</p>
+<div class="flex justify-center gap-3 my-5">
+<div class="theme-dot on" style="background:#D4AF37" onclick="setTheme('#D4AF37',this)"></div>
+<div class="theme-dot" style="background:#C0708C" onclick="setTheme('#C0708C',this)"></div>
+<div class="theme-dot" style="background:#7FA98C" onclick="setTheme('#7FA98C',this)"></div>
+</div>
+<p class="text-[8px] opacity-30 tracking-[0.3em]">DESIGNED BY <a href="https://wa.me/6285893093628" target="_blank" class="wm-link">SUPRIATNA STUDIO</a></p>
 </div>
 
 </div>
@@ -340,11 +356,20 @@ function renderUcapan(){
   var el=document.getElementById('listUcapan');
   var d=[];try{d=JSON.parse(localStorage.getItem('ucapan_list')||'[]');}catch(e){}
   if(d.length===0){el.innerHTML='<p class="text-[10px] opacity-30 text-center">Belum ada ucapan. Jadilah yang pertama!</p>';return;}
-  el.innerHTML=d.map(function(u){
-    return '<div class="border-l border-gold/30 pl-4"><p class="serif text-base italic text-[#D4AF37]">'+u.nama+'</p><p class="text-[11px] opacity-60 mt-1">'+u.pesan+'</p></div>';
+  var shown=d.slice(0,ucapLimit);
+  el.innerHTML=shown.map(function(u){
+    return '<div class="border-l border-gold/30 pl-4"><p class="serif text-base italic gold-text">'+u.nama+'</p><p class="text-[11px] opacity-60 mt-1">'+u.pesan+'</p></div>';
   }).join('');
+  if(d.length>ucapLimit){el.innerHTML+='<button onclick="ucapLimit+=5;renderUcapan()" class="w-full text-[9px] tracking-widest gold-text py-2">MUAT LEBIH BANYAK ▾</button>';}
 }
+var ucapLimit=5;
 renderUcapan();
+
+function setTheme(color,el){
+  document.documentElement.style.setProperty('--accent',color);
+  document.querySelectorAll('.theme-dot').forEach(function(d){d.classList.remove('on');});
+  el.classList.add('on');
+}
 
 function bagikan(){
   var url=window.location.href;
