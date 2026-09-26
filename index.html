@@ -1,90 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Andra & Selina - Gedung Surya Kencana Bogor</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Andra & Selina - Royal Gold 850K | Demo Supriatna Studio</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-<style>
-body{font-family:Montserrat;background:#070707;color:#E8DCC6}
-.serif{font-family:'Cormorant Garamond'}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>body{font-family:Montserrat;background:#070707;color:#E8DCC6}.serif{font-family:'Cormorant Garamond'}.gold{color:#D4AF37}.border-gold{border-color:rgba(212,175,55,0.3)}.bg-gold{background:#D4AF37}</style>
 </head>
 <body>
-
 <div id="cover" class="fixed inset-0 z-[99] bg-[#050505] flex items-center justify-center p-6">
-  <div class="w-full max-w-[380px] border border-[#D4AF37]/30 p-1">
-    <div class="border border-[#D4AF37]/20 p-10 py-20 text-center">
-      <p class="text-[10px] tracking-[0.6em] text-[#D4AF37]">THE WEDDING OF</p>
-      <h1 class="serif text-5xl italic text-[#D4AF37] mt-8 leading-[0.9]">Andra<br><span class="text-3xl">&</span> Selina</h1>
-      <p class="text-[11px] tracking-[0.4em] mt-8 opacity-50">GEDUNG SURYA KENCANA<br>KOTA BOGOR - JANJI SUCI</p>
-      <button onclick="buka()" class="mt-12 w-full border border-[#D4AF37] text-[#D4AF37] py-4 text-[11px] tracking-[0.4em] hover:bg-[#D4AF37] hover:text-black transition-all">BUKA UNDANGAN →</button>
-    </div>
-  </div>
-</div>
-
-<!-- MUSIK JANJI SUCI - GANTI NAMA FILE DISINI BUAT CUSTOMER LAIN -->
-<audio id="musik" loop preload="auto">
-  <source src="janji-suci.mp3" type="audio/mpeg">
-</audio>
-
+<div class="w-full max-w-[400px] border border-gold p-1"><div class="border border-gold p-10 py-24 text-center bg-[#0a0a0a]">
+<p class="text-[10px] tracking-[0.7em] gold">ROYAL GOLD - 850K</p>
+<h1 class="serif text-6xl italic gold mt-10 leading-[0.85]">Andra<br><span class="text-4xl">&</span><br>Selina</h1>
+<div class="w-12 h-[1px] bg-gold/40 mx-auto my-8"></div>
+<p class="text-[11px] tracking-[0.4em] opacity-50">GEDUNG SURYA KENCANA<br>BOGOR • 24 DEC 2026</p>
+<button onclick="buka()" class="mt-12 w-full border border-gold gold py-5 text-[11px] tracking-[0.5em]">BUKA UNDANGAN →</button>
+<p class="text-[7px] mt-4 opacity-20 tracking-[0.3em]">DEMO BY SUPRIATNA STUDIO 0858-9309-3628</p>
+</div></div></div>
+<audio id="musik" loop preload="auto"><source src="janji-suci.mp3" type="audio/mpeg"></audio>
 <div class="max-w-[480px] mx-auto">
-  <div class="min-h-[90vh] flex flex-col items-center justify-center text-center px-8 pt-20">
-    <p class="text-[10px] tracking-[0.6em] text-[#D4AF37]">YOU ARE INVITED TO</p>
-    <h2 class="serif text-[64px] leading-[0.9] italic text-[#D4AF37] mt-10">Andra<br>& Selina</h2>
-    <p class="text-[11px] tracking-[0.3em] mt-10 opacity-60 leading-relaxed">GEDUNG SURYA KENCANA, KOTA BOGOR<br>24 DECEMBER 2026 - 16.00 WIB</p>
-
-    <div class="grid grid-cols-4 gap-3 mt-16 w-full">
-      <div class="border border-white/10 py-5"><p id="d" class="serif text-3xl text-[#D4AF37]">00</p><p class="text-[8px] tracking-[0.3em] mt-1 opacity-60">HARI</p></div>
-      <div class="border border-white/10 py-5"><p id="h" class="serif text-3xl text-[#D4AF37]">00</p><p class="text-[8px] tracking-[0.3em] mt-1 opacity-60">JAM</p></div>
-      <div class="border border-white/10 py-5"><p id="m" class="serif text-3xl text-[#D4AF37]">00</p><p class="text-[8px] tracking-[0.3em] mt-1 opacity-60">MENIT</p></div>
-      <div class="border border-white/10 py-5"><p id="s" class="serif text-3xl text-[#D4AF37]">00</p><p class="text-[8px] tracking-[0.3em] mt-1 opacity-60">DETIK</p></div>
-    </div>
-  </div>
-
-  <div class="px-8 py-24 text-center border-t border-[#D4AF37]/10">
-    <p class="text-[10px] tracking-[0.5em] text-[#D4AF37]">SAVE THE DATE</p>
-    <h3 class="serif text-4xl italic text-[#D4AF37] mt-6">Akad & Resepsi</h3>
-    <div class="w-[40px] h-[1px] bg-[#D4AF37]/40 mx-auto mt-8"></div>
-    <p class="mt-8 text-[13px] leading-relaxed opacity-70 font-light">
-      Gedung Surya Kencana<br>
-      Jl. Merdeka No.120, Ciwaringin<br>
-      Kec. Bogor Tengah, Kota Bogor<br>
-      Jawa Barat 16124<br><br>
-      Sabtu, 24 Desember 2026<br>
-      Pukul 16:00 WIB - Selesai
-    </p>
-
-    <a href="https://maps.app.goo.gl/FpxE5YrZ9kJVJFbY9" target="_blank" class="inline-block mt-10 w-full border border-[#D4AF37]/40 py-5 text-[10px] tracking-[0.4em] text-[#D4AF37]">LIHAT LOKASI DI MAPS →</a>
-
-    <a href="https://wa.me/6285893093628?text=Halo%20Supriatna%20Studio%2C%20saya%20mau%20order%20undangan%20Andra%20Selina%20Surya%20Kencana%20-%20Janji%20Suci%20Version%20Rp850k" target="_blank" class="block mt-3 w-full bg-[#D4AF37] text-black py-5 text-[10px] tracking-[0.4em] font-bold">ORDER VIA WA - 0858-9309-3628</a>
-
-    <p class="mt-6 text-[9px] opacity-30 leading-relaxed">Musik: Janji Suci - Request bisa ganti<br>sesuai customer di Github</p>
-  </div>
-
-  <div class="text-center py-12 text-[8px] tracking-[0.5em] opacity-20">SUPRIATNA DIGITAL STUDIO - PREMIUM Rp 850.000</div>
+<div class="min-h-screen flex flex-col items-center justify-center text-center px-8">
+<p class="text-[10px] tracking-[0.6em] gold">THE WEDDING OF</p>
+<h2 class="serif text-[70px] leading-[0.85] italic gold mt-12">Andra<br>& Selina</h2>
+<p class="text-[11px] tracking-[0.4em] mt-12 opacity-60">SABTU, 24 DESEMBER 2026<br>GEDUNG SURYA KENCANA BOGOR</p>
+<div class="grid grid-cols-4 gap-3 mt-20 w-full">
+<div class="border border-gold/20 py-6 bg-white/[0.02]"><p id="d" class="serif text-3xl gold">00</p><p class="text-[8px] mt-1 opacity-50">HARI</p></div>
+<div class="border border-gold/20 py-6 bg-white/[0.02]"><p id="h" class="serif text-3xl gold">00</p><p class="text-[8px] mt-1 opacity-50">JAM</p></div>
+<div class="border border-gold/20 py-6 bg-white/[0.02]"><p id="m" class="serif text-3xl gold">00</p><p class="text-[8px] mt-1 opacity-50">MENIT</p></div>
+<div class="border border-gold/20 py-6 bg-white/[0.02]"><p id="s" class="serif text-3xl gold">00</p><p class="text-[8px] mt-1 opacity-50">DETIK</p></div>
 </div>
-
+</div>
+<div class="px-8 py-24 border-t border-gold/10 text-center">
+<p class="text-[10px] tracking-[0.5em] gold">MEMPELAI</p>
+<h3 class="serif text-4xl italic gold mt-4">Andra & Selina</h3>
+<div class="mt-12 grid grid-cols-2 gap-6">
+<div class="border border-gold/20 p-6 bg-white/[0.02]"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300" class="w-24 h-24 rounded-full mx-auto object-cover border border-gold/30"><p class="serif text-xl italic gold mt-4">Andra Putra</p><p class="text-[10px] opacity-50 mt-2">Bogor</p></div>
+<div class="border border-gold/20 p-6 bg-white/[0.02]"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300" class="w-24 h-24 rounded-full mx-auto object-cover border border-gold/30"><p class="serif text-xl italic gold mt-4">Selina Ayu</p><p class="text-[10px] opacity-50 mt-2">Bogor</p></div>
+</div>
+</div>
+<div class="px-8 py-24 text-center">
+<p class="text-[10px] tracking-[0.5em] gold">LOKASI ACARA</p>
+<h3 class="serif text-3xl italic gold mt-3">Surya Kencana Bogor</h3>
+<div class="border border-gold/20 mt-12 p-8 bg-white/[0.02]">
+<p class="text-[12px] opacity-70">Jl. Merdeka No.120, Bogor Tengah<br><br><span class="gold">24 Des 2026 • 16:00 WIB</span></p>
+<a href="https://maps.app.goo.gl/FpxE5YrZ9kJVJFbY9" target="_blank" class="block mt-8 border border-gold/40 py-4 text-[10px] tracking-[0.4em] gold">BUKA MAPS →</a>
+</div>
+</div>
+<div class="px-8 py-20 border-t border-gold/10 text-center">
+<p class="text-[10px] tracking-[0.5em] gold">GALLERY - SAMPLE</p>
+<h3 class="serif text-3xl italic gold mt-3">Momen Bahagia</h3>
+<p class="text-[9px] opacity-30 mt-2 tracking-[0.2em]">*FOTO SAMPLE - AKAN DIGANTI FOTO ASLI ANDA</p>
+<div class="grid grid-cols-2 gap-3 mt-8">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" class="aspect-[3/4] object-cover border border-gold/20">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" class="aspect-[3/4] object-cover border border-gold/20">
+<img src="https://images.unsplash.com/photo-1520854221256-17451ccdf07b?w=600" class="aspect-[3/4] object-cover border border-gold/20">
+<img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600" class="aspect-[3/4] object-cover border border-gold/20">
+</div>
+</div>
+<div class="px-8 py-24 bg-white/[0.02] border-y border-gold/10">
+<p class="text-[10px] tracking-[0.5em] gold text-center">RSVP</p>
+<h3 class="serif text-3xl italic gold mt-3 text-center">Konfirmasi</h3>
+<div class="mt-10 border border-gold/20 p-6">
+<input id="nama" placeholder="Nama Anda" class="w-full bg-black/50 border border-gold/20 p-4 text-[12px] outline-none">
+<select id="hadir" class="w-full bg-black/50 border border-gold/20 p-4 text-[12px] outline-none mt-3"><option>Hadir</option><option>Tidak Hadir</option></select>
+<button onclick="kirimRSVP()" class="w-full bg-gold text-black py-4 text-[11px] tracking-[0.4em] font-bold mt-4">KIRIM RSVP KE WA →</button>
+</div>
+</div>
+<div class="px-8 py-24 text-center">
+<a href="https://wa.me/6285893093628?text=Halo%20Supriatna%20Studio%2C%20saya%20mau%20order%20Royal%20Gold%20850k%20kayak%20Andra%20Selina" target="_blank" class="block w-full bg-gold text-black py-5 text-[11px] tracking-[0.4em] font-bold">ORDER 850K - CHAT 0858-9309-3628</a>
+<p class="text-[9px] opacity-20 mt-4">DEMO - SUPRIATNA DIGITAL STUDIO BOGOR</p>
+</div>
+</div>
 <script>
-function buka(){
-  document.getElementById('cover').style.transform='translateY(-100%)';
-  document.getElementById('cover').style.transition='1s ease';
-  var audio = document.getElementById('musik');
-  audio.play().catch(()=>{});
-  setTimeout(()=>document.getElementById('cover').style.display='none',1000)
-}
-const target = new Date("Dec 24, 2026 16:00:00").getTime();
-setInterval(()=>{
-  const now = new Date().getTime();
-  let j = target-now;
-  if(j<0) j=0;
-  document.getElementById('d').innerText=Math.floor(j/(1000*60*60*24));
-  document.getElementById('h').innerText=Math.floor((j%(1000*60*60*24))/(1000*60*60));
-  document.getElementById('m').innerText=Math.floor((j%(1000*60*60))/(1000*60));
-  document.getElementById('s').innerText=Math.floor((j%(1000*60))/1000);
-},1000)
+function buka(){document.getElementById('cover').style.transform='translateY(-100%)';document.getElementById('cover').style.transition='1s';document.getElementById('musik').play().catch(()=>{});setTimeout(()=>document.getElementById('cover').style.display='none',1000)}
+const target=new Date("Dec 24, 2026 16:00:00").getTime();setInterval(()=>{let j=target-new Date().getTime();if(j<0)j=0;document.getElementById('d').innerText=Math.floor(j/86400000);document.getElementById('h').innerText=Math.floor(j%86400000/3600000);document.getElementById('m').innerText=Math.floor(j%3600000/60000);document.getElementById('s').innerText=Math.floor(j%60000/1000)},1000)
+function kirimRSVP(){let n=document.getElementById('nama').value||'Tamu';let h=document.getElementById('hadir').value;window.open(`https://wa.me/6285893093628?text=${encodeURIComponent(`Halo Andra & Selina, saya ${n} - ${h}`)}`)}
 </script>
-
 </body>
 </html>
