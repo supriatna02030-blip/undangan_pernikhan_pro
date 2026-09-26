@@ -57,7 +57,7 @@ input::placeholder,textarea::placeholder{color:rgba(232,220,198,0.35)}
 </div></div></div>
 
 <button id="langBtn" onclick="toggleLang()" class="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-[#D4AF37] bg-[#0a0a0a] text-[10px]">ID</button>
-<audio id="musik" loop></audio>
+<audio id="musik" loop><source src="janji-suci.mp3"></audio>
 <button id="btnMusik" onclick="toggleMusik()" class="fixed bottom-5 right-5 z-40 w-11 h-11 rounded-full border border-gold flex items-center justify-center text-[#D4AF37] bg-[#0a0a0a]">
 <span id="eqIcon" class="eq"><span></span><span></span><span></span></span>
 <span id="musNote">♪</span>
@@ -245,12 +245,14 @@ document.getElementById('btnWA').href="https://wa.me/6285893093628?text=Halo%2C%
 
 var colors=['#151515','#1a1a1a'];
 var track=document.getElementById('track'),html='';
-for(var r=0;r<2;r++){for(var i=1;i<=6;i++){html+='<div class="ph" style="background:'+colors[i%2]+'">Foto '+i+'</div>';}}
+for(var r=0;r<2;r++){for(var i=1;i<=6;i++){
+  html+='<img src="foto'+i+'.jpg" class="w-full aspect-[4/5] object-cover mb-[2px]" onerror="this.outerHTML=\'<div class=&quot;ph&quot; style=&quot;background:'+colors[i%2]+'&quot;>Foto '+i+'</div>\'">';
+}}
 track.innerHTML=html;
 
 var swipeTrack=document.getElementById('swipeTrack'),dotsEl=document.getElementById('dots'),sHtml='',dHtml='';
 for(var k=1;k<=6;k++){
-  sHtml+='<div class="swipe-slide"><div class="ph" style="background:'+colors[k%2]+'">Foto '+k+'</div></div>';
+  sHtml+='<div class="swipe-slide"><img src="foto'+k+'.jpg" class="w-full aspect-[4/5] object-cover" onerror="this.outerHTML=\'<div class=&quot;ph&quot; style=&quot;background:'+colors[k%2]+'&quot;>Foto '+k+'</div>\'"></div>';
   dHtml+='<div class="dot'+(k===1?' active':'')+'" data-i="'+(k-1)+'"></div>';
 }
 swipeTrack.innerHTML=sHtml;dotsEl.innerHTML=dHtml;
